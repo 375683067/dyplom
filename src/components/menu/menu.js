@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuItem from './menuItem';
+import MenuItem from '../../containers/menuItemContainer';
 import './menu.scss';
 import {ITEM_COUNT, PAGE_COUNT} from '../../constants/menuConfiguration';
 /**
