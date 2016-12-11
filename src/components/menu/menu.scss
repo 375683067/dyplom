@@ -1,0 +1,48 @@
+.md-menu {
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 60px;
+
+
+  text-align: center;
+}
+
+.md-menu__page {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  transition: transform 0.5s;
+}
+
+.md-menu__navigation {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.md-menu__navigation-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  margin: 10px;
+  display: inline-block;
+  transition: transform 0.5s;
+  &.active-true {
+    transform: scale(1.5);
+  }
+}
+
+.md-menu__exit-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70px;
+  height: 70px;
+  background: url('./exit.png') center;
+  background-size: cover;
+}

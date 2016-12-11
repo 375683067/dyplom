@@ -1,0 +1,32 @@
+.md-login {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.md-login__input {
+  background-color: black;
+  border: none;
+  outline: none;
+  color: #008000;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.md-button__login,
+.md-login__input {
+  padding: 8px;
+  margin-bottom: 13px;
+  font-size: 35px;
+  width: 451px;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+
+.md-login-title {
+  font-size: 60px;
+  color: white;
+  margin-bottom: 50px;
+}

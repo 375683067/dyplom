@@ -1,0 +1,36 @@
+.md-menu-item {
+  width: 25%;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 100px;
+  position: relative;
+
+}
+.md-menu-item__container {
+  width: 60%;
+  left: 10%;
+  padding-top: 35%;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.md-menu-item__label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 60px;
+  transform: translate(-50%, -50%);
+
+  &.is-open-false {
+    font-size: 0;
+    background: url('./lock.jpg') center;
+    width: 20%;
+    padding-top: 20%;
+    background-size: cover;
+  }
+
+}
