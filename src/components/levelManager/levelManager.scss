@@ -1,0 +1,52 @@
+@import "../../constants/sassConstants";
+.md-level-manager {
+  font-size: rem(20);
+  color: white;
+}
+
+.md-level-code-section {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  height: 100%;
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+
+.md-level-information-section {
+  position: absolute;
+  width: 50%;
+  left: 0;
+  height: 100%;
+  outline: 1px solid gray;
+  outline-offset: -1px;
+}
+
+.md-level-manager__content {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: rem(50);
+  top: rem(50);
+}
+
+.md-level-manager__control-buttons {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 50%;
+  height: rem(50);
+  outline: 1px solid burlywood;
+  outline-offset: -1px;
+}
+
+.md-level-manager__button {
+  height: rem(50);
+  line-height: rem(50);
+  vertical-align: middle;
+  font-size: rem(30);
+  outline: 2px solid green;
+  display: inline-block;
+  width: rem(120);
+  text-align: center;
+  user-select: none;
+}

@@ -1,5 +1,7 @@
+@import "../../constants/sassConstants";
+
 .md-login {
-  margin-top: 150px;
+  margin-top: rem(150);
   text-align: center;
 }
 
@@ -16,17 +18,13 @@
 
 .md-button__login,
 .md-login__input {
-  padding: 8px;
-  margin-bottom: 13px;
-  font-size: 35px;
-  width: 451px;
-  height: 56px;
+  padding: rem(8);
+  margin-bottom: rem(13);
+  font-size: rem(35);
+  width: rem(451);
+  height: rem(56);
   box-sizing: border-box;
 }
 
 
-.md-login-title {
-  font-size: 60px;
-  color: white;
-  margin-bottom: 50px;
-}
+

@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import LevelManager from '../components/levelManager/levelManager';
 import {push} from 'react-router-redux';
+import {TO_MENU} from '../constants/path';
 
 function mapStateToProps({userInfo: {openLevel}}) {
   return {
@@ -10,8 +11,8 @@ function mapStateToProps({userInfo: {openLevel}}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    exit() {
-
+    backToMenu() {
+      dispatch(push(TO_MENU));
     }
   };
 }

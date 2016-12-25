@@ -5,7 +5,7 @@ class menuItem extends  React.Component {
 
   openLevel() {
     if (this.props.isOpen) {
-      this.props.openLevel(`level/${this.props.number - 1}`);
+      this.props.openLevel(`level/${this.props.number}`);
     }
   }
 

@@ -76,7 +76,7 @@ class Menu extends React.Component {
     return (
       <div className="md-menu">
         <div className="md-menu__exit-btn" onClick={this.exit.bind(this)}></div>
-        <div className="md-login-title">Dyplom</div>
+        <div className="md-title">Dyplom</div>
         {this.getPages()}
         <div className="md-menu__navigation">
           {this.getNavigationButtons()}

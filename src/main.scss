@@ -1,3 +1,4 @@
+@import "./constants/sassConstants";
 html,
 body,
 #app {
@@ -10,6 +11,13 @@ body,
 .md-button {
   background-color: green;
   color: whitesmoke;
-  padding: 8px;
+  padding: rem(8);
   display: inline-block;
+}
+
+.md-title {
+  font-size: rem(60);
+  color: white;
+  text-align: center;
+  margin-bottom: rem(50);
 }

@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="md-login">
-        <div className="md-login-title">Dyplom</div>
+        <div className="md-title">Dyplom</div>
         <input className="md-login__input" value={this.state.login} onChange={this.loginChanged.bind(this)} type="text" placeholder="login" />
         <br/>
         <input className="md-login__input" value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="password" />
