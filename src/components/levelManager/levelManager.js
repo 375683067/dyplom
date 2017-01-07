@@ -7,6 +7,7 @@ import LevelContent from '../levelContent/levelContent';
 import Scene from '../scene/scene';
 import Penguin from '../characters/penguin';
 import Code from '../levelContent/code';
+import Environment from '../enviroments/mountains';
 
 class LevelManager extends React.Component {
   /**
@@ -82,7 +83,8 @@ class LevelManager extends React.Component {
   render() {
     const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
     const CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
-    let character = new Penguin({x: 0, y: 0, width: 140, height: 200});
+    let character = new Penguin({x: 0, y: 0, width: 130, height: 150});
+    let environment = new Environment({x: 0, y: 0, width: 0, height: 0});
     this.character = character;
     return (
       <div className="md-level-manager">
@@ -97,7 +99,7 @@ class LevelManager extends React.Component {
             <LevelContent configuration={CONFIGURATION.info}/>
           </div>
           <div className="md-level-code-section">
-            <Scene sceneItemList={[character]}/>
+            <Scene sceneItemList={[environment, character]}/>
             <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
           </div>
         </div>

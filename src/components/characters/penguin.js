@@ -1,7 +1,7 @@
 import SceneItem from '../scene/sceneItem';
-import staticPenguin from './penguin.jpg';
-import penguinWalk from './penguin_walk.jpg';
-import penguinJump from './penguin_jump.jpg';
+import staticPenguin from './penguin.png';
+import penguinWalk from './penguin_walk.png';
+import penguinJump from './penguin_jump.png';
 
 const STATIC_PENGUIN = 'staticPenguin';
 const PENGUIN_WALK = 'asagsdfsa';
@@ -92,6 +92,8 @@ class Penguin extends SceneItem {
    */
   draw(context, width, height) {
     super.draw(context, width, height);
+    this.y = height - this.height;
+    this.x = 0.5 * width - 0.5 * this.width;
     switch(this.currentState) {
       case STATIC_PENGUIN:
         this.drawImage(PENGUIN_JUMP);
