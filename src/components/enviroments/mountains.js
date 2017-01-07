@@ -1,9 +1,9 @@
-import sceneItem from '../scene/sceneItem';
+import SceneItem from '../scene/sceneItem';
 import backgroundURL from './mountains.png';
 
 const BACKGROUND = 'sdgasdgasdgsda';
 
-class Mountains extends sceneItem {
+class Mountains extends SceneItem {
   constructor(...args) {
     super(...args);
 

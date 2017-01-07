@@ -3,10 +3,10 @@ import staticPenguin from './penguin.png';
 import penguinWalk from './penguin_walk.png';
 import penguinJump from './penguin_jump.png';
 
-const STATIC_PENGUIN = 'staticPenguin';
-const PENGUIN_WALK = 'asagsdfsa';
-const PENGUIN_JUMP = 'asdfdfdfghhkjbvkuyasd';
-
+import {STATIC_PENGUIN, PENGUIN_WALK, PENGUIN_JUMP} from '../../constants/penguinActions';
+/**
+ * @event 'stateChanged' - notify about penguin's state is changed
+ */
 class Penguin extends SceneItem {
   /**
    *
@@ -18,8 +18,7 @@ class Penguin extends SceneItem {
     this.walkSprite = null;
     this.intervalId = null;
 
-    this.currentState = STATIC_PENGUIN;
-
+    this.changePenguinState(STATIC_PENGUIN);
     this.initImages();
   }
   /**
@@ -51,6 +50,7 @@ class Penguin extends SceneItem {
     this.currentState = state;
     clearInterval(this.intervalId);
     this.intervalId = null;
+    this.emit('stateChanged', state);
   }
   /**
    *
@@ -96,7 +96,7 @@ class Penguin extends SceneItem {
     this.x = 0.5 * width - 0.5 * this.width;
     switch(this.currentState) {
       case STATIC_PENGUIN:
-        this.drawImage(PENGUIN_JUMP);
+        this.drawImage(STATIC_PENGUIN);
         break;
       case PENGUIN_WALK:
         this.drawImage(PENGUIN_WALK);

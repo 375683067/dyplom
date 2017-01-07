@@ -8,6 +8,7 @@ import Scene from '../scene/scene';
 import Penguin from '../characters/penguin';
 import Code from '../levelContent/code';
 import Environment from '../enviroments/mountains';
+import controller from '../../utils/controllers/penguinController';
 
 class LevelManager extends React.Component {
   /**
@@ -17,10 +18,24 @@ class LevelManager extends React.Component {
     super();
     this.LEVEL_ID = parseInt(props.params.id);
     this.code = '';
+
+    this.character = null;
+    this.environment = null;
+
     this.state = {
       currentSubLevel: 1
     };
     this.SUB_LEVELS_COUNT = SUB_LEVELS_INFORMATION[this.LEVEL_ID].subLevelsCount;
+
+    this.initSceneComponents();
+  }
+  /**
+   *
+   */
+  initSceneComponents() {
+    this.character = new Penguin({x: 0, y: 0, width: 130, height: 150});
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    controller(this.character, this.environment);
   }
   /**
    *
@@ -83,9 +98,6 @@ class LevelManager extends React.Component {
   render() {
     const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
     const CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
-    let character = new Penguin({x: 0, y: 0, width: 130, height: 150});
-    let environment = new Environment({x: 0, y: 0, width: 0, height: 0});
-    this.character = character;
     return (
       <div className="md-level-manager">
 
@@ -99,7 +111,7 @@ class LevelManager extends React.Component {
             <LevelContent configuration={CONFIGURATION.info}/>
           </div>
           <div className="md-level-code-section">
-            <Scene sceneItemList={[environment, character]}/>
+            <Scene sceneItemList={[this.environment, this.character]}/>
             <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
           </div>
         </div>

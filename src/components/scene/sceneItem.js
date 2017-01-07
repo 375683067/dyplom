@@ -77,6 +77,53 @@ class SceneItem extends EventEmitter {
   }
   /**
    *
+   * @param prop -  'x', 'y', 'width', 'height'
+   * @returns {number}
+   */
+  getProp(prop) {
+    let toReturn = null;
+    switch (prop) {
+      case 'x':
+        toReturn = this.x;
+        break;
+      case 'y':
+        toReturn = this.y;
+        break;
+      case 'width':
+        toReturn = this.width;
+        break;
+      case 'height':
+        toReturn = this.height;
+        break;
+    }
+    return toReturn;
+  }
+
+  /**
+   *
+   * @param {string} prop
+   * @param {*} value
+   */
+  setProp(prop, value) {
+    let toReturn = null;
+    switch (prop) {
+      case 'x':
+        this.x = value;
+        break;
+      case 'y':
+        this.y = value;
+        break;
+      case 'width':
+        this.width = value;
+        break;
+      case 'height':
+        this.height = value;
+        toReturn = this.x;
+        break;
+    }
+  }
+  /**
+   *
    * @param {CanvasRenderingContext2D} context
    * @param {number} width
    * @param {number} height
