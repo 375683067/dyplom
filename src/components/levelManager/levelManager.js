@@ -4,6 +4,9 @@ import * as LEVEL_CONFIGURATION from '../../constants/levelConfigurations';
 import {SUB_LEVELS_INFORMATION} from '../../constants/levelConfigurationInfo';
 import {generateLevelId} from '../../utils/helper';
 import LevelContent from '../levelContent/levelContent';
+import Scene from '../scene/scene';
+import Penguin from '../characters/penguin';
+import Code from '../levelContent/code';
 
 class LevelManager extends React.Component {
   /**
@@ -12,10 +15,11 @@ class LevelManager extends React.Component {
   constructor(props) {
     super();
     this.LEVEL_ID = parseInt(props.params.id);
+    this.code = '';
     this.state = {
       currentSubLevel: 1
     };
-    this.SUB_LEVELS_COUNT = SUB_LEVELS_INFORMATION[this.id] = this.subLevelsCount;
+    this.SUB_LEVELS_COUNT = SUB_LEVELS_INFORMATION[this.LEVEL_ID].subLevelsCount;
   }
   /**
    *
@@ -32,8 +36,16 @@ class LevelManager extends React.Component {
   /**
    *
    */
+  nextPart() {
+    this.setState({
+      currentSubLevel: ++this.state.currentSubLevel
+    });
+  }
+  /**
+   *
+   */
   getNexButton() {
-    let nextSubLevel = <div className="md-level-manager__button">next</div>;
+    let nextSubLevel = <div className="md-level-manager__button" onClick={this.nextPart.bind(this)}>next</div>;
     let finish = <div className="md-level-manager__button">finish</div>;
     let toReturn;
     if (this.SUB_LEVELS_COUNT > 1) {
@@ -50,9 +62,28 @@ class LevelManager extends React.Component {
   /**
    *
    */
+  onCodeChanged(val) {
+    this.code = val;
+  }
+  /**
+   *
+   */
+  runCode() {
+    function run () {
+      let penguin = this.character;
+      eval(this.code);
+    }
+
+    run.call(this, this.code);
+  }
+  /**
+   *
+   */
   render() {
     const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
     const CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
+    let character = new Penguin({x: 0, y: 0, width: 140, height: 200});
+    this.character = character;
     return (
       <div className="md-level-manager">
 
@@ -63,15 +94,17 @@ class LevelManager extends React.Component {
 
         <div className="md-level-manager__content">
           <div className="md-level-information-section">
-            <LevelContent configuration={CONFIGURATION.topic}/>
+            <LevelContent configuration={CONFIGURATION.info}/>
           </div>
           <div className="md-level-code-section">
-
+            <Scene sceneItemList={[character]}/>
+            <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
           </div>
         </div>
 
         <div className="md-level-manager__control-buttons">
           {this.getNexButton()}
+          <div className="md-level-manager__button" onClick={this.runCode.bind(this)}>run</div>
         </div>
 
       </div>
