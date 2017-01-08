@@ -2,8 +2,10 @@ import SceneItem from '../scene/sceneItem';
 import staticPenguin from './penguin.png';
 import penguinWalk from './penguin_walk.png';
 import penguinJump from './penguin_jump.png';
+import penguinSlide from './penguin_slide.png';
+import penguinFall from './penguin_lie.png';
 
-import {STATIC_PENGUIN, PENGUIN_WALK, PENGUIN_JUMP} from '../../constants/penguinActions';
+import {STATIC_PENGUIN, PENGUIN_WALK, PENGUIN_JUMP, PENGUIN_SLIDE, PENGUIN_FALL} from '../../constants/penguinActions';
 /**
  * @event 'stateChanged' - notify about penguin's state is changed
  */
@@ -42,6 +44,20 @@ class Penguin extends SceneItem {
     }).then((sprite) => {
       this.walkSprite = sprite
     });
+
+    this.initImage(PENGUIN_SLIDE, penguinSlide, {
+      chunkCount: 2,
+      loop: false
+    }).then((sprite) => {
+      this.slideSprite = sprite;
+    });
+
+    this.initImage(PENGUIN_FALL, penguinFall, {
+      chunkCount: 4,
+      loop: false
+    }).then((sprite) => {
+      this.fallSprite = sprite;
+    });
   }
   /**
    *
@@ -51,6 +67,29 @@ class Penguin extends SceneItem {
     clearInterval(this.intervalId);
     this.intervalId = null;
     this.emit('stateChanged', state);
+  }
+  /**
+   *
+   */
+  slide() {
+    this.changePenguinState(PENGUIN_SLIDE);
+    this.intervalId = setInterval(()=> {
+      this.slideSprite.next();
+      this.changed();
+    }, 200);
+    setTimeout(()=> {
+      this.stop();
+    }, 3000);
+  }
+  /**
+   *
+   */
+  fall() {
+    this.changePenguinState(PENGUIN_FALL);
+    this.intervalId = setInterval(()=> {
+      this.fallSprite.next();
+      this.changed();
+    }, 200);
   }
   /**
    *
@@ -103,6 +142,12 @@ class Penguin extends SceneItem {
         break;
       case PENGUIN_JUMP:
         this.drawImage(PENGUIN_JUMP);
+        break;
+      case PENGUIN_SLIDE:
+        this.drawImage(PENGUIN_SLIDE);
+        break;
+      case PENGUIN_FALL:
+        this.drawImage(PENGUIN_FALL);
         break;
     }
   }

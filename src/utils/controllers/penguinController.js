@@ -1,4 +1,4 @@
-import {PENGUIN_JUMP, PENGUIN_WALK, STATIC_PENGUIN} from '../../constants/penguinActions';
+import {STATIC_PENGUIN, PENGUIN_FALL} from '../../constants/penguinActions';
 /**
  *
  * @param {SceneItem} penguin
@@ -11,6 +11,7 @@ export default (penguin, environment) => {
     clearInterval(intervalId);
 
     switch (ACTION) {
+      case PENGUIN_FALL:
       case STATIC_PENGUIN:
         break;
       default:

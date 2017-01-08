@@ -52,7 +52,7 @@ class Scene extends React.Component {
    * @returns {XML}
    */
   render() {
-    return <canvas width="600" height="450" ref={this.onSceneCreated.bind(this)}/>;
+    return <canvas width="910" height="450" ref={this.onSceneCreated.bind(this)}/>;
   }
 }
 
