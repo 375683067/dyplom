@@ -8,3 +8,9 @@ export const doLogin = function (login, password) {
     password
   };
 };
+
+export const openNextLevel = () => {
+  return {
+    type: actions.OPEN_NEXT_LEVEL
+  }
+};

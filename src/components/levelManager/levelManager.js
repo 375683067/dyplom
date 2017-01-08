@@ -60,9 +60,15 @@ class LevelManager extends React.Component {
   /**
    *
    */
+  finishLevel() {
+    this.props.finishLevel();
+  }
+  /**
+   *
+   */
   getNexButton() {
     let nextSubLevel = <div className="md-level-manager__button" onClick={this.nextPart.bind(this)}>next</div>;
-    let finish = <div className="md-level-manager__button">finish</div>;
+    let finish = <div onClick={this.finishLevel.bind(this)} className="md-level-manager__button">finish</div>;
     let toReturn;
     if (this.SUB_LEVELS_COUNT > 1) {
       if (this.state.currentSubLevel === this.SUB_LEVELS_COUNT) {

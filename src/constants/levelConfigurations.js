@@ -1,5 +1,7 @@
 import * as CONTENT_TYPES from './contentTypes';
 import PC from '../levelAssets/pc.jpg';
+import numberExample from '../levelAssets/numbers.png';
+
 export const level_1_1 = {
   topic: 'OBJECT',
   info: [
@@ -50,26 +52,30 @@ penguin.jump();`
   ]
 };
 
-export const level_1_2 = {
-  topic: 'second part of first level',
+export const level_2_1 = {
+  topic: 'Variables. Number',
   info: [
     {
-      type: CONTENT_TYPES.TITLE,
-      value: 'Title of second part'
-    },
-    {
-      type: CONTENT_TYPES.IMAGE,
-      value: PC
+      type: CONTENT_TYPES.TEXT,
+      value: `Data is information that we store in our computer programs. For example, your name is a piece of data, and so is your age. The color of your hair, how many siblings you have, where you live, whether you’re male or female — these things are all data. `
     },
     {
       type: CONTENT_TYPES.TEXT,
-      value: 'New info that very useful ',
+      value: `There are three basic types of data: numbers, strings, and Booleans. For example, your age can be represented as a number, and so can your height. Numbers in JavaScript look like this: `
     },
     {
       type: CONTENT_TYPES.CODE,
-      value: `console.info("Hello world of second part");
-console.info("Hello world of second part");
-console.info("Hello world of second part");`
+      value: `5;
+var x = 34.00;    
+var y = 34;`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'There are two types of numeric data: integer and float.'
+    },
+    {
+      type: CONTENT_TYPES.IMAGE,
+      value: numberExample
     }
   ]
 };
