@@ -5,6 +5,8 @@ import Penguin from '../components/characters/penguin';
 import Environment from '../components/enviroments/mountains';
 import {PENGUIN_HALF} from '../constants/penguinActions'
 import controller from '../components/../utils/controllers/penguinController';
+import TextPopup from '../components/textPopup/textPopup';
+import stringsUrl from '../levelAssets/strings.png';
 
 export const level_1_1 = {
   topic: 'OBJECT',
@@ -104,7 +106,6 @@ var y = 34;`
         count = parseInt(count);
         this.sceneComponents.push(penguin);
       }
-      console.info('count', count);
       while (count-- > 0) {
         let penguin = new Penguin({x: Math.round(count) * PENGUIN_WIDTH, y: 0, width: PENGUIN_WIDTH, height: 150});
         this.sceneComponents.push(penguin);
@@ -116,5 +117,41 @@ var y = 34;`
   initSceneComponents() {
     this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
     this.sceneComponents = [this.environment];
+  },
+};
+
+export const level_2_2 = {
+  topic: 'Variables. String',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: `Strings are used to represent text. String –  a variable that can store a set of characters. Characters are basically the keys on your keyboard. Every letter, number, and special characters are considered all characters. They are usually written in single Quotation mark. Strings look like this:`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: `'string example'`
+    },
+    {
+      type: CONTENT_TYPES.IMAGE,
+      value: stringsUrl
+    }
+
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.say = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+
+    this.sceneComponents = [this.environment, this.penguin];
   },
 };

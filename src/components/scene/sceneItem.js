@@ -33,7 +33,7 @@ class SceneItem extends EventEmitter {
   }
   /**
    *
-   * @param {string} name
+   * @param {string | Symbol} name
    * @param {string} url
    * @param {object} [options]
    * @param {number} options.chunkCount

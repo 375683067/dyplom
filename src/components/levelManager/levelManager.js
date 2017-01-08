@@ -29,7 +29,12 @@ class LevelManager extends React.Component {
       currentSubLevel: 1
     };
     this.SUB_LEVELS_COUNT = SUB_LEVELS_INFORMATION[this.LEVEL_ID].subLevelsCount;
-
+    this.checkConfiguration();
+  }
+  /**
+   *
+   */
+  checkConfiguration() {
     const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
 
     this.CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
@@ -96,6 +101,7 @@ class LevelManager extends React.Component {
    *
    */
   render() {
+    this.checkConfiguration();
     return (
       <div className="md-level-manager">
 
