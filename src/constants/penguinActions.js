@@ -3,3 +3,4 @@ export const PENGUIN_WALK = 'asagsdfsa';
 export const PENGUIN_JUMP = 'asdfdfdfghhkjbvkuyasd';
 export const PENGUIN_SLIDE = Symbol();
 export const PENGUIN_FALL = Symbol();
+export const PENGUIN_HALF = Symbol();

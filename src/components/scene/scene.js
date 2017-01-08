@@ -12,6 +12,14 @@ class Scene extends React.Component {
   }
   /**
    *
+   * @param props
+   */
+  componentWillReceiveProps(props) {
+    this.subscribeForChanges(props.sceneItemList);
+    this.drawScene(props.sceneItemList);
+  }
+  /**
+   *
    */
   subscribeForChanges(sceneItemList) {
     sceneItemList.forEach((sceneItem) => {

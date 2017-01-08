@@ -5,10 +5,10 @@ import {SUB_LEVELS_INFORMATION} from '../../constants/levelConfigurationInfo';
 import {generateLevelId} from '../../utils/helper';
 import LevelContent from '../levelContent/levelContent';
 import Scene from '../scene/scene';
-import Penguin from '../characters/penguin';
+
 import Code from '../levelContent/code';
-import Environment from '../enviroments/mountains';
-import controller from '../../utils/controllers/penguinController';
+
+
 
 class LevelManager extends React.Component {
   /**
@@ -22,20 +22,18 @@ class LevelManager extends React.Component {
     this.character = null;
     this.environment = null;
 
+    this.sceneComponents = [];
+    this.CONFIGURATION = null;
+
     this.state = {
       currentSubLevel: 1
     };
     this.SUB_LEVELS_COUNT = SUB_LEVELS_INFORMATION[this.LEVEL_ID].subLevelsCount;
 
-    this.initSceneComponents();
-  }
-  /**
-   *
-   */
-  initSceneComponents() {
-    this.character = new Penguin({x: 0, y: 0, width: 130, height: 150});
-    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
-    controller(this.character, this.environment);
+    const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
+
+    this.CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
+    this.CONFIGURATION.initSceneComponents.call(this);
   }
   /**
    *
@@ -91,33 +89,27 @@ class LevelManager extends React.Component {
    *
    */
   runCode() {
-    function run () {
-      let penguin = this.character;
-      eval(this.code);
-    }
-
+    let run = this.CONFIGURATION.codeRunner;
     run.call(this, this.code);
   }
   /**
    *
    */
   render() {
-    const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
-    const CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
     return (
       <div className="md-level-manager">
 
         <div className="md-level-manager__header">
           <span>Level {this.getLevelLabelId()} </span>
-          <span>{CONFIGURATION.topic}</span>
+          <span>{this.CONFIGURATION.topic}</span>
         </div>
 
         <div className="md-level-manager__content">
           <div className="md-level-information-section">
-            <LevelContent configuration={CONFIGURATION.info}/>
+            <LevelContent configuration={this.CONFIGURATION.info}/>
           </div>
           <div className="md-level-code-section">
-            <Scene sceneItemList={[this.environment, this.character]}/>
+            <Scene sceneItemList={this.sceneComponents}/>
             <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
           </div>
         </div>

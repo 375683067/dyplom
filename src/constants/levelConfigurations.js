@@ -1,6 +1,10 @@
 import * as CONTENT_TYPES from './contentTypes';
 import PC from '../levelAssets/pc.jpg';
 import numberExample from '../levelAssets/numbers.png';
+import Penguin from '../components/characters/penguin';
+import Environment from '../components/enviroments/mountains';
+import {PENGUIN_HALF} from '../constants/penguinActions'
+import controller from '../components/../utils/controllers/penguinController';
 
 export const level_1_1 = {
   topic: 'OBJECT',
@@ -48,8 +52,18 @@ penguin.jump();`
     {
       type: CONTENT_TYPES.TEXT,
       value: 'Try out these different commands.',
-    },
-  ]
+    }
+  ],
+  initSceneComponents() {
+    this.character = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.sceneComponents = [this.environment, this.character];
+    controller(this.character, this.environment);
+  },
+  codeRunner() {
+    let penguin = this.character;
+    eval(this.code);
+  }
 };
 
 export const level_2_1 = {
@@ -77,5 +91,30 @@ var y = 34;`
       type: CONTENT_TYPES.IMAGE,
       value: numberExample
     }
-  ]
+  ],
+  codeRunner() {
+    let drawPenguins = (count) => {
+      let PENGUIN_WIDTH = 130;
+
+      this.sceneComponents.splice(1, this.sceneComponents.length - 1);
+
+      if (count % 1 !== 0) {
+        let penguin = new Penguin({x: parseInt(count) * PENGUIN_WIDTH, y: 0, width: PENGUIN_WIDTH, height: 150});
+        penguin.changePenguinState(PENGUIN_HALF);
+        count = parseInt(count);
+        this.sceneComponents.push(penguin);
+      }
+      console.info('count', count);
+      while (count-- > 0) {
+        let penguin = new Penguin({x: Math.round(count) * PENGUIN_WIDTH, y: 0, width: PENGUIN_WIDTH, height: 150});
+        this.sceneComponents.push(penguin);
+      }
+      this.sceneComponents[0].changed();
+    };
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.sceneComponents = [this.environment];
+  },
 };

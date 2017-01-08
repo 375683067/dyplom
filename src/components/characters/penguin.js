@@ -4,8 +4,9 @@ import penguinWalk from './penguin_walk.png';
 import penguinJump from './penguin_jump.png';
 import penguinSlide from './penguin_slide.png';
 import penguinFall from './penguin_lie.png';
+import panguinHalf from './halfPenguin.png'
 
-import {STATIC_PENGUIN, PENGUIN_WALK, PENGUIN_JUMP, PENGUIN_SLIDE, PENGUIN_FALL} from '../../constants/penguinActions';
+import {STATIC_PENGUIN, PENGUIN_HALF, PENGUIN_WALK, PENGUIN_JUMP, PENGUIN_SLIDE, PENGUIN_FALL} from '../../constants/penguinActions';
 /**
  * @event 'stateChanged' - notify about penguin's state is changed
  */
@@ -15,7 +16,7 @@ class Penguin extends SceneItem {
    */
   constructor(configuration) {
     super(configuration);
-
+    this.centered = configuration.centered;
     this.jumpSprite = null;
     this.walkSprite = null;
     this.intervalId = null;
@@ -29,6 +30,7 @@ class Penguin extends SceneItem {
   initImages() {
     //image of penguin stays on the place
     this.initImage(STATIC_PENGUIN, staticPenguin);
+    this.initImage(PENGUIN_HALF, panguinHalf);
     //image of penguin jumps
     this.initImage(PENGUIN_JUMP, penguinJump, {
       chunkCount: 3,
@@ -132,7 +134,9 @@ class Penguin extends SceneItem {
   draw(context, width, height) {
     super.draw(context, width, height);
     this.y = height - this.height;
-    this.x = 0.5 * width - 0.5 * this.width;
+    if (this.centered) {
+      this.x = 0.5 * width - 0.5 * this.width;
+    }
     switch(this.currentState) {
       case STATIC_PENGUIN:
         this.drawImage(STATIC_PENGUIN);
@@ -148,6 +152,9 @@ class Penguin extends SceneItem {
         break;
       case PENGUIN_FALL:
         this.drawImage(PENGUIN_FALL);
+        break;
+      case PENGUIN_HALF:
+        this.drawImage(PENGUIN_HALF);
         break;
     }
   }
