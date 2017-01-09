@@ -9,5 +9,8 @@ export const SUB_LEVELS_INFORMATION = {
   },
   '3': {
     subLevelsCount: 1
+  },
+  '4': {
+    subLevelsCount: 1
   }
 };

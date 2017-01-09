@@ -46,9 +46,9 @@ class LevelManager extends React.Component {
   getLevelLabelId() {
     let label = '';
     if (this.SUB_LEVELS_COUNT > 1) {
-      label = this.LEVEL_ID;
-    } else {
       label = `${this.LEVEL_ID}.${this.state.currentSubLevel}`;
+    } else {
+      label = this.LEVEL_ID;
     }
     return label;
   }

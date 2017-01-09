@@ -249,3 +249,117 @@ penguin.calculate(a+b);`
     this.sceneComponents = [this.environment, this.penguin];
   },
 };
+
+
+export const level_4_1 = {
+  topic: 'Conditional statements',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: `Conditional statement is a set of rules performed if a certain condition is met. 
+This is the ability to test a variable against a value and act in one way if the condition is met by the variable or another way if not. They are also commonly called by programmers if statements.
+To know if a condition is True of False, we need a new type of data: the booleans. They allow logical operations. A logic statement or operation can be evaluated to be True or False. Our conditional statement can then be understood like this:
+`
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `if (a condition evaluates to True):
+then do these things only for ‘True’
+else:
+otherwise do these things only for ‘False’.`
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'if'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'An "if" statement is a programming conditional statement that, if proved true, performs a function or displays information.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example - make a "Good day" greeting if the hour is less than 18:00'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `if (hour < 18) {
+	greeting = "Good day";
+}`
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'else'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Else is a programming conditional statement that if previous conditions are not true displays alternate information or performs alternate commands.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example - if the hour is less than 18, create a "Good day" greeting, otherwise "Good evening":'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `if (hour < 18) {
+  greeting = "Good day";
+} else {
+  greeting = "Good evening";
+}`
+
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'If time is less than 10:00, create a "Good morning" greeting, if not, but time is less than 20:00, create a "Good day" greeting, otherwise a "Good evening":'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'If time is less than 10:00, create a "Good morning" greeting, if not, but time is less than 20:00, create a "Good day" greeting, otherwise a "Good evening":'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `if (time < 10) {
+	greeting = "Good morning";
+} else if (time < 20) {
+	greeting = "Good day";
+} else {
+	greeting = "Good evening";
+}`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'You can play around with our penguin example, or try write your own:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var time = 10;
+var greeting;
+if (time < 10) {
+	greeting = "Good morning";
+} else if (time < 20) {
+	greeting = "Good day";
+} else {
+	greeting = "Good evening";
+};
+penguin.greeting(greeting);`
+    }
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.greeting = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+
+    this.sceneComponents = [this.environment, this.penguin];
+  }
+};
+
+
