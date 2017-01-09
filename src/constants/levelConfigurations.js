@@ -69,7 +69,7 @@ penguin.jump();`
 };
 
 export const level_2_1 = {
-  topic: 'Variables. Number',
+  topic: 'Variables. Number and Boolean',
   info: [
     {
       type: CONTENT_TYPES.TEXT,
@@ -92,6 +92,14 @@ var y = 34;`
     {
       type: CONTENT_TYPES.IMAGE,
       value: numberExample
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Boolean'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Booleans are logical values, which can only be true or false. This is often represented in computer languages as 1 and 0 respectively. Booleans can be used like light switches to turn on and off conditions within a program.'
     }
   ],
   codeRunner() {
@@ -147,6 +155,92 @@ export const level_2_2 = {
     let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
     textPopup.drawText('Hello World');
     this.penguin.say = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+
+    this.sceneComponents = [this.environment, this.penguin];
+  },
+};
+
+
+export const level_3_1 = {
+  topic: 'Operators',
+  info: [
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Arithmetic Operators'
+    },
+    {
+      type: CONTENT_TYPES.TABLE,
+      value: {
+        headers: ['Operator', 'Description', 'Example'],
+        body: [
+          ['+', 'Adds two operands.', 'A+B=30'],
+          ['-', 'Subtracts second operand from the first.', 'A−B = -10'],
+          ['*', 'Multiplies both operands.', 'A*B = 200'],
+          ['/', 'Divides numerator by de-numerator.', 'B / A = 2'],
+          ['%', 'Modulus Operator and remainder of after an integer division.', 'B % A = 0'],
+          ['++', 'Increment operator increases the integer value by one.', 'B % A = 0'],
+          ['--', 'Increment operator increases the integer value by one.', 'A++ = 11'],
+        ]
+      }
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Relational Operators'
+    },
+    {
+      type: CONTENT_TYPES.TABLE,
+      value: {
+        headers: ['Operator', 'Description', 'Example'],
+        body: [
+          ['==', 'Checks if the values of two operands are equal or not. If yes, then the condition becomes true.', '(A == B) is not true.'],
+          ['!=', 'Checks if the values of two operands are equal or not. If the values are not equal, then the condition becomes true.', '(A != B) is true.'],
+          ['>', 'Checks if the value of left operand is greater than the value of right operand. If yes, then the condition becomes true.', '(A > B) is not true.'],
+          ['<', 'Checks if the value of left operand is less than the value of right operand. If yes, then the condition becomes true.', '(A < B) is true.'],
+          ['>=', 'Checks if the value of left operand is greater than or equal to the value of right operand. If yes, then the condition becomes true.', '(A >= B) is not true.'],
+          ['<=', 'Checks if the value of left operand is less than or equal to the value of right operand. If yes, then the condition becomes true.', '(A <= B) is true.'],
+        ]
+      }
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Logical operators'
+    },
+    {
+      type: CONTENT_TYPES.TABLE,
+      value: {
+        headers: ['Operator', 'Description', 'Example'],
+        body: [
+          ['&&', 'Called Logical AND operator. If both the operands are non-zero, then the condition becomes true.','(A && B) is false.'],
+          ['||', 'Called Logical OR Operator. If any of the two operands is non-zero, then the condition becomes true.', '(A || B) is true.'],
+          ['!','Called Logical NOT Operator. It is used to reverse the logical state of its operand. If a condition is true, then Logical NOT operator will make it false.', '!(A && B) is true']
+        ]
+      }
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Tell to penguin what operation to execute and it tell you result. See example:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var a = 10;
+var b = 11;
+penguin.calculate(a+b);`
+    }
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.calculate = (text) => {
       this.sceneComponents.splice(2, 1, textPopup);
       textPopup.drawText(text);
       this.sceneComponents[0].changed();

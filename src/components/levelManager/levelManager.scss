@@ -19,6 +19,8 @@
   left: 0;
   height: 100%;
   outline: 1px solid gray;
+  overflow: hidden;
+  overflow-y: auto;
   outline-offset: -1px;
 }
 

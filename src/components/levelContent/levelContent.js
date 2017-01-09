@@ -4,6 +4,7 @@ import Title from './title';
 import Text from './text';
 import ContentImage from './image';
 import Code from './code';
+import Table from './table';
 /**
  *
  */
@@ -23,6 +24,9 @@ class LevelContent extends React.Component{
           break;
         case CONTENT_TYPES.CODE:
           toReturn = <Code key={id} readOnly={true} value={item.value}/>;
+          break;
+        case CONTENT_TYPES.TABLE:
+          toReturn = <Table key={id} value={item.value} />;
           break;
       }
       return toReturn;
