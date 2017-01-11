@@ -503,3 +503,107 @@ penguin.count(countStr);`
     this.sceneComponents = [this.environment, this.penguin];
   },
 };
+
+
+export const level_6_1 = {
+  topic: 'Arrays',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'An array is a special variable, which can hold more than one value at a time. If you have a list of items (a list of fruits names, for example), storing the fruits in single variables could look like this:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var fruit1 = "Apple";
+var fruit2 = "Banana";
+var fruit3 = “Orange”;`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'However, what if you want to loop through the fruits and find a specific one? And what if you had not 3 fruits, but 300? The solution is an array!'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'An array can hold many values under a single name, and you can access the values by referring to an index number.'
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Creating an Array'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Using an array literal is the easiest way to create Array.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Syntax:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var array_name = [item1, item2, ...];`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var fruits = ["Apple", "Banana", “Orange”];`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Using the Keyword new also creates an Array, and assigns values to it:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: 'var fruit = new Array("Apple", "Banana", "Orange");'
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Accessing array elements'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Arrays are zero-indexed: the first element of an array is at index 0, and the last element is at the index equal to the value of the array\'s length property minus 1.'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var arr = ['this is the first element', 'this is the second element'];
+penguin.say(arr[0]);              // logs 'this is the first element'
+penguin.say(arr[1]);              // logs 'this is the second element'
+penguin.say(arr[arr.length - 1]); // logs 'this is the second element'`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: `Use your knowledge to create list of purchase for our penguin using Array, and provide it to penguin:`
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var arr=[];
+penguin.readList(arr);`
+    }
+
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.say = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+    this.penguin.readList = (text) => {
+      text = text.join(' ');
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+    this.sceneComponents = [this.environment, this.penguin];
+  },
+};
