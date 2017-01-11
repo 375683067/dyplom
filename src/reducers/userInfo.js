@@ -4,7 +4,7 @@ export default function userInfo (state = {user:'', openLevel: 0}, action) {
     case DO_LOGIN:
       state = {
         user: action.login,
-        openLevel: 3
+        openLevel: 10
       };
       break;
     case OPEN_NEXT_LEVEL:

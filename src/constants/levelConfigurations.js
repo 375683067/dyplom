@@ -362,4 +362,144 @@ penguin.greeting(greeting);`
   }
 };
 
-
+export const level_5_1 = {
+  topic: 'loop',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'A loop statement allows us to execute a statement or group of statements multiple times and following is the general from of a loop statement in most of the programming languages',
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'while'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'while - Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Syntax:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `while (condition) {
+	code block to be executed
+}`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `while (i < 10) {
+  text += "The number is " + i;
+  i++;
+}`
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'for'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'for - Execute a sequence of statements multiple times and abbreviates the code that manages the loop variable.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Syntax:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `for (statement 1; statement 2; statement 3) {
+    code block to be executed
+}`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Statement 1 sets a variable before the loop starts (var i = 0).'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Statement 2 defines the condition for the loop to run (i must be less than 5).'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Statement 3 increases a value (i++) each time the code block in the loop has been executed.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `for (i = 0; i < 5; i++) {
+	text += "The number is " + i + "<br>";
+}`
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'do/while',
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'do/while - Like a while statement, except that it tests the condition at the end of the loop body. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Syntax'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `do {
+	code block to be executed
+} while (condition);`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Example'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'The example below uses a do/while loop. The loop will always be executed at least once, even if the condition is false, because the code block is executed before the condition is tested:',
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `do {
+    text += "The number is " + i;
+	i++;
+} while (i < 10);`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Loops is the main concept of programming. So you have to understand it well. Play around with our penguin. Teach him to count to 10 via the next example. Try to do it with different types of loops.'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var count = 10;
+var i;
+var countStr = '';
+for(i = 0; i < count; i++) {
+	countStr += i + 1 + ' ';
+}
+penguin.count(countStr);`
+    }
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.count = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+    this.sceneComponents = [this.environment, this.penguin];
+  },
+};
