@@ -100,6 +100,15 @@ var y = 34;`
     {
       type: CONTENT_TYPES.TEXT,
       value: 'Booleans are logical values, which can only be true or false. This is often represented in computer languages as 1 and 0 respectively. Booleans can be used like light switches to turn on and off conditions within a program.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Play with example below to figure out how numbers are working.'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var penguinCount = 2.5
+drawPenguins(penguinCount);`
     }
   ],
   codeRunner() {
@@ -604,6 +613,93 @@ penguin.readList(arr);`
       textPopup.drawText(text);
       this.sceneComponents[0].changed();
     };
+    this.sceneComponents = [this.environment, this.penguin];
+  },
+};
+
+export const level_7_1 = {
+  topic: 'loop',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'A	function	is	a	way	to	bundle	code	so	that	it	can	be	reused.	Functions	allow	us	to	run	the	same	piece	of code	from	multiple	places	in	a	program	without	having	to	copy	and	paste	the	code	repeatedly.	Also,	by hiding	long	bits	of	code	in	a	function	and	giving	it	an	easy-to-understand	name,	you’ll	be	better	able	to plan	out	your	code	because	you	can	focus	on	organizing	your	functions	rather	than	all	of	the	little	code details	that	make	them	up.	Splitting	up	your	code	into	smaller,	more	manageable	pieces	allows	you	to see	the	bigger	picture	and	think	about	how	your	programs	are	structured	at	a	higher	level.'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'The next example shows	how	a	function	is	built.	The	code	between	the	curly	brackets	is	called	the	function body,	just	as	the	code	between	the	curly	brackets	in	a	loop	is	called	the	loop	body.'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `function makePenguinSay(whatToSay) {
+  penguin.say(whatToSay);// <- the function body goes between curly brackets
+}`
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Calling	a	Function'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'To	run	the	code	inside	a	function	(the	function	body),	we	need	to	call	the	function.	To	call	a	function, you	enter	its	name	followed	by	a	pair	of	opening	and	closing	parentheses,	as	shown	here.'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `makePenguinSay('Hello World!!!!')`
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Calling	ourFirstFunction	executes	the	body	of	the	function,	which	is	makePenguinSay("Hello world!");,	and	the	text	we	asked	to	be	printed	is	displayed	on	the	next	line:	Hello	world!.'
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'return value'
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'A	return	value	is	the	value	that	a	function	outputs,	which	can	then	be	used	elsewhere	in	your	code.	In this	case,	the	return	value	is	undefined	because	we	didn’t	tell	the	function	to	return	any	particular	value in	the	body	of	the	function.	All	we	did	was	ask	it	to	print	a	message	to	the	console,	which	is	not	the same	as	returning	a	value.	A	function	always	returns	undefined	unless	there	is	something	in	the function	body	that	tells	it	to	return	a	different	value.'
+    },
+    {
+      type: CONTENT_TYPES.TITLE,
+      value: 'Passing	Arguments	into	Functions '
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'ourFirstFunction	just	prints	the	same	line	of	text	every	time	you	call	it,	but	you’ll	probably	want your	functions	to	be	more	flexible	than	that.	Function	arguments	allow	us	to	pass	values	into	a	function in	order	to	change	the	function’s	behavior	when	it’s	called.	Arguments	always	go	between	the	function parentheses,	both	when	you	create	the	function	and	when	you	call	it. The	following	sayHelloTo	function	uses	an	argument	(name)	to	say	hello	to	someone	you	specify.',
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `var	sayHelloTo	=	function	(name)	{
+  penguin.say("Hello	"	+	name	+	"!"); 
+}; `
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'We	create	the	function	in	the	first	line	and	assign	it	to	the	variable	sayHelloTo.	When	the	function	is called,	it	logs	the	string	"Hello	"	+	name	+	"!",	replacing	name	with	whatever	value	you	pass	to	the function	as	an	argument. To	call	a	function	that	takes	an	argument,	place	the	value	you’d	like	to	use	for	the	argument	between	the parentheses	following	the	function	name.	For	example,	to	say	hello	to	Nick,	you	would	write: '
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `sayHelloTo("Nick"); `
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'Play around with examples blow. Figure out how functions works because it\'s very important feature of programming'
+    }
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.say = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+
     this.sceneComponents = [this.environment, this.penguin];
   },
 };
