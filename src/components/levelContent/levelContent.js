@@ -5,6 +5,7 @@ import Text from './text';
 import ContentImage from './image';
 import Code from './code';
 import Table from './table';
+import Calculator from './calculator';
 import './content.scss';
 /**
  *
@@ -29,6 +30,8 @@ class LevelContent extends React.Component{
         case CONTENT_TYPES.TABLE:
           toReturn = <Table addClass={item.className} key={id} value={item.value} />;
           break;
+        case CONTENT_TYPES.CALCULATOR:
+          toReturn = <Calculator addClass={item.className} key={id} value={item.value}/>
       }
       return toReturn;
     });

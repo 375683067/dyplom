@@ -38,7 +38,9 @@ class LevelManager extends React.Component {
     const UNIQUE_LEVEL_ID = generateLevelId(this.LEVEL_ID, this.state.currentSubLevel);
 
     this.CONFIGURATION = LEVEL_CONFIGURATION[UNIQUE_LEVEL_ID];
-    this.CONFIGURATION.initSceneComponents.call(this);
+    if (this.CONFIGURATION.initSceneComponents) {
+      this.CONFIGURATION.initSceneComponents.call(this);
+    }
   }
   /**
    *
@@ -91,11 +93,34 @@ class LevelManager extends React.Component {
     this.code = val;
   }
   /**
-   *
+   * runs user's code
    */
   runCode() {
     let run = this.CONFIGURATION.codeRunner;
-    run.call(this, this.code);
+    if (run) {
+      run.call(this, this.code);
+    }
+  }
+  /**
+   * initialize scene and code if initSceneComponent function is provided by configuration
+   */
+  sceneAndCodeSection() {
+    if (this.CONFIGURATION.initSceneComponents) {
+      return (<div className="md-level-code-section">
+        <Scene sceneItemList={this.sceneComponents}/>
+        <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
+      </div>);
+    } else {
+      return (<div className="md-level-code-section"></div>);
+    }
+  }
+  /**
+   *
+   */
+  getRunCodeButton() {
+    if (this.CONFIGURATION.codeRunner) {
+      return <div className="md-level-manager__button" onClick={this.runCode.bind(this)}>run</div>
+    }
   }
   /**
    *
@@ -103,7 +128,7 @@ class LevelManager extends React.Component {
   render() {
     this.checkConfiguration();
     return (
-      <div className="md-level-manager">
+      <div className={`md-level-manager ${this.CONFIGURATION.addClass || ''}`}>
 
         <div className="md-level-manager__header">
           <span>Level {this.getLevelLabelId()} </span>
@@ -114,15 +139,12 @@ class LevelManager extends React.Component {
           <div className="md-level-information-section">
             <LevelContent configuration={this.CONFIGURATION.info}/>
           </div>
-          <div className="md-level-code-section">
-            <Scene sceneItemList={this.sceneComponents}/>
-            <Code readOnly={false} onChange={this.onCodeChanged.bind(this)}/>
-          </div>
+          {this.sceneAndCodeSection()}
         </div>
 
         <div className="md-level-manager__control-buttons">
+          {this.getRunCodeButton()}
           {this.getNexButton()}
-          <div className="md-level-manager__button" onClick={this.runCode.bind(this)}>run</div>
         </div>
 
       </div>

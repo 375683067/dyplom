@@ -1,3 +1,23 @@
 .width-100 {
   width: 100%;
 }
+
+.md-calculator-assignment__item.disabled {
+  pointer-events: none;
+
+  input {
+    opacity: 0.6;
+  }
+}
+input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+.md-calculator-assignment__item.completed {
+  input {
+    background: green;
+    color: white;
+  }
+}

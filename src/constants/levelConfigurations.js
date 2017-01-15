@@ -756,3 +756,119 @@ penguin.slide();`
     this.sceneComponents = [this.environment, this.penguin];
   },
 };
+
+export const level_9_1 = {
+  topic: 'Calculator practice',
+  addClass: 'calculator-level',
+  info: [
+    {
+      type: CONTENT_TYPES.CALCULATOR,
+      value: {
+        assignments: [
+          {
+            code: {
+              value: `function hi (a, b) {
+    return a * b;
+}
+hi(1, 0);`
+            },
+            input: {
+              result: 0
+            }
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    return a * b;
+}
+hi(3, 4);`
+            },
+            input: {
+              result: 12
+            }
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    return a * b;
+}
+ 
+function hello (a, b) {
+    return a + b;
+}
+hi(1, 2) + hello(2, 1);`
+            },
+            input: {
+              result: 5
+            }
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    if (a < b) {
+        return a + b;
+    } else {
+        return a * b;
+    }
+}
+hi(4, 3);`
+            },
+            input: {
+              result: 12
+            }
+
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    if (a < b) {
+        return a + b;
+    } else {
+        return a * b;
+    }
+}
+ 
+hi(1, 2);`
+            },
+            input: {
+              result: 3
+            }
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    return a * b;
+}
+ 
+function hello (a, b) {
+    return a + b;
+}
+ 
+hi(1, 3) + hello(1, 2);`
+            },
+            input: {
+              result: 6
+            }
+          },
+          {
+            code: {
+              value: `function hi (a, b) {
+    return a * b;
+}
+ 
+function hello (a, b) {
+    return a + b;
+}
+ 
+var a = hi(2, 3);
+hello(a, 1);`
+            },
+            input: {
+              result: 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+};

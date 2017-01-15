@@ -52,3 +52,10 @@
   text-align: center;
   user-select: none;
 }
+
+.md-level-manager.calculator-level .md-level-code-section {
+  content: ' ';
+  background: url('./levelManager.png') no-repeat center;
+  background-size: 70% 60%;
+  position: absolute;
+}
