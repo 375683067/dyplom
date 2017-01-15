@@ -7,6 +7,9 @@ import {PENGUIN_HALF} from '../constants/penguinActions'
 import controller from '../components/../utils/controllers/penguinController';
 import TextPopup from '../components/textPopup/textPopup';
 import stringsUrl from '../levelAssets/strings.png';
+import flowChart from '../levelAssets/flowchart.png';
+import flowChart1 from '../levelAssets/flowChart1.png';
+import flowchartsymblos from '../levelAssets/FlowchartSymbols1.png';
 
 export const level_1_1 = {
   topic: 'OBJECT',
@@ -683,6 +686,56 @@ export const level_7_1 = {
     {
       type: CONTENT_TYPES.TEXT,
       value: 'Play around with examples blow. Figure out how functions works because it\'s very important feature of programming'
+    }
+  ],
+  codeRunner() {
+    let penguin = this.penguin;
+    eval(this.code);
+  },
+  initSceneComponents() {
+    this.environment = new Environment({x: 0, y: 0, width: 0, height: 0});
+    this.penguin = new Penguin({x: 0, y: 0, width: 130, height: 150, centered: true});
+    let textPopup = new TextPopup({x: 0, y: 100, width: 400, height: 150, centered: true});
+    textPopup.drawText('Hello World');
+    this.penguin.say = (text) => {
+      this.sceneComponents.splice(2, 1, textPopup);
+      textPopup.drawText(text);
+      this.sceneComponents[0].changed();
+    };
+
+    this.sceneComponents = [this.environment, this.penguin];
+  },
+};
+
+export const level_8_1 = {
+  topic: 'Flowchart',
+  info: [
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'A flowchart is a visual representation of the sequence of steps and decisions needed to perform a process. Each step in the sequence is noted within a diagram shape. Steps are linked by connecting lines and directional arrows. This allows anyone to view the flowchart and logically follow the process from beginning to end.'
+    },
+    {
+      type: CONTENT_TYPES.IMAGE,
+      value: flowChart
+    },
+    {
+      type: CONTENT_TYPES.IMAGE,
+      value: flowchartsymblos,
+      className: 'width-100'
+    },
+    {
+      type: CONTENT_TYPES.IMAGE,
+      value: flowChart1
+    },
+    {
+      type: CONTENT_TYPES.TEXT,
+      value: 'From this flowchart example write actions for penguin:'
+    },
+    {
+      type: CONTENT_TYPES.CODE,
+      value: `penguin.walk();
+penguin.jump();
+penguin.slide();`
     }
   ],
   codeRunner() {

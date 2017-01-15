@@ -5,6 +5,7 @@ import Text from './text';
 import ContentImage from './image';
 import Code from './code';
 import Table from './table';
+import './content.scss';
 /**
  *
  */
@@ -14,19 +15,19 @@ class LevelContent extends React.Component{
       let toReturn;
       switch (item.type) {
         case CONTENT_TYPES.TITLE:
-          toReturn = <Title key={id} value={item.value}/>;
+          toReturn = <Title key={id} addClass={item.className} value={item.value}/>;
           break;
         case CONTENT_TYPES.IMAGE:
-          toReturn = <ContentImage key={id} value={item.value}/>;
+          toReturn = <ContentImage addClass={item.className} key={id} value={item.value}/>;
           break;
         case CONTENT_TYPES.TEXT:
-          toReturn = <Text key={id} value={item.value}/>;
+          toReturn = <Text addClass={item.className} key={id} value={item.value}/>;
           break;
         case CONTENT_TYPES.CODE:
-          toReturn = <Code key={id} readOnly={true} value={item.value}/>;
+          toReturn = <Code addClass={item.className} key={id} readOnly={true} value={item.value}/>;
           break;
         case CONTENT_TYPES.TABLE:
-          toReturn = <Table key={id} value={item.value} />;
+          toReturn = <Table addClass={item.className} key={id} value={item.value} />;
           break;
       }
       return toReturn;
