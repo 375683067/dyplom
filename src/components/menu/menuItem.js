@@ -14,7 +14,7 @@ class menuItem extends  React.Component {
       <div onClick={this.openLevel.bind(this, this.props.number - 1)} className="md-menu-item">
         <div className="md-menu-item__container">
           <div className={`md-menu-item__label is-open-${this.props.isOpen}`}>
-            {this.props.number}
+            {this.props.number + '. ' + this.props.label}
           </div>
         </div>
       </div>

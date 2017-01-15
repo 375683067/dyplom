@@ -8,6 +8,22 @@ body,
   margin: 0;
 }
 
+@font-face {
+  font-family: WickedMouseDemo; /* Имя шрифта */
+  src: url(./fonts/WickedMouseDemo.otf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+  font-family: alphabetizedcassettetapes; /* Имя шрифта */
+  src: url(./fonts/alphabetizedcassettetapes.ttf); /* Путь к файлу со шрифтом */
+}
+
+
+@font-face {
+  font-family: NotoSans; /* Имя шрифта */
+  src: url(./fonts/NotoSans-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 .md-button {
   background-color: green;
   color: whitesmoke;

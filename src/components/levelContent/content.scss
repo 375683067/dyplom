@@ -1,5 +1,20 @@
+@import '../../constants/sassConstants';
+
+.md-level-content {
+  padding: rem(26);
+}
+
+.md-content-text {
+  text-align: justify;
+  margin-bottom: rem(10);
+}
+
 .width-100 {
   width: 100%;
+}
+.md-content-code,
+.md-content-text {
+  margin-bottom: rem(10);
 }
 
 .md-calculator-assignment__item.disabled {

@@ -5,6 +5,17 @@ import {ITEM_COUNT, PAGE_COUNT} from '../../constants/menuConfiguration';
 /**
  * класс який відповідає за відобреження меню вибору рівнів
  */
+let MenuNames = [
+  'Objects',
+  'Data Type',
+  'Operators',
+  'Condition statements',
+  'Loops',
+  'Array',
+  'Functions',
+  'Flowchart',
+  'Calculator practise'
+];
 class Menu extends React.Component {
 
   constructor() {
@@ -20,9 +31,9 @@ class Menu extends React.Component {
 
     for (i = 0; i < ITEM_COUNT; i++) {
       let number = pageIndex * ITEM_COUNT + i + 1;
-
+      let label = MenuNames[number - 1];
       items.push(
-        <MenuItem key={`menu-item-${number}`} isOpen={this.props.openLevel >= number - 1} number={number}/>
+        <MenuItem label={label} key={`menu-item-${number}`} isOpen={this.props.openLevel >= number - 1} number={number}/>
       );
     }
 
@@ -47,26 +58,26 @@ class Menu extends React.Component {
     return pages;
   }
 
-  changeActivePage(pageIndex) {
-    this.setState({
-      activePage: pageIndex
-    });
-  }
+  // changeActivePage(pageIndex) {
+  //   this.setState({
+  //     activePage: pageIndex
+  //   });
+  // }
 
-  getNavigationButtons() {
-    let navigationButtons = [];
-    let i;
-    if (this.state) {
-      for (i = 0; i < PAGE_COUNT; i++) {
-        navigationButtons.push((
-          <div key={`button-${i}`} onClick={this.changeActivePage.bind(this, i)} className={`md-menu__navigation-button active-${i === this.state.activePage}`}></div>
-        ));
-      }
-    }
-
-
-    return navigationButtons;
-  }
+  // getNavigationButtons() {
+  //   let navigationButtons = [];
+  //   let i;
+  //   if (this.state) {
+  //     for (i = 0; i < PAGE_COUNT; i++) {
+  //       navigationButtons.push((
+  //         <div key={`button-${i}`} onClick={this.changeActivePage.bind(this, i)} className={`md-menu__navigation-button active-${i === this.state.activePage}`}></div>
+  //       ));
+  //     }
+  //   }
+  //
+  //
+  //   return navigationButtons;
+  // }
 
   exit() {
     this.props.exit();
@@ -76,11 +87,11 @@ class Menu extends React.Component {
     return (
       <div className="md-menu">
         <div className="md-menu__exit-btn" onClick={this.exit.bind(this)}></div>
-        <div className="md-title">Dyplom</div>
+        <div className="md-title">Programming basics</div>
         {this.getPages()}
-        <div className="md-menu__navigation">
-          {this.getNavigationButtons()}
-        </div>
+        {/*<div className="md-menu__navigation">*/}
+          {/*{this.getNavigationButtons()}*/}
+        {/*</div>*/}
       </div>
     );
   }

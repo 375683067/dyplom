@@ -1,5 +1,4 @@
 import * as CONTENT_TYPES from './contentTypes';
-import PC from '../levelAssets/pc.jpg';
 import numberExample from '../levelAssets/numbers.png';
 import Penguin from '../components/characters/penguin';
 import Environment from '../components/enviroments/mountains';
@@ -15,14 +14,9 @@ export const level_1_1 = {
   topic: 'OBJECT',
   info: [
     {
-      type: CONTENT_TYPES.TITLE,
+      type: CONTENT_TYPES.TEXT,
       value: 'Hi, welcome to our programming course! If you’ve never learned to program before, you might be wondering what programming actually is. Well, when we write a program, we’re giving the computer a series of comands that kind of look like a weird form of English. You can think of a computer as a very obedient dog, listening to your every command, and doing  whatever you tell it to do. '
 
-    },
-
-    {
-      type: CONTENT_TYPES.IMAGE,
-      value: PC
     },
     {
       type: CONTENT_TYPES.CODE,

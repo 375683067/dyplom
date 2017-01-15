@@ -1,17 +1,27 @@
+@import "../../constants/sassConstants";
 .md-menu-item {
-  width: 25%;
+  width: 33%;
   float: left;
   display: inline-block;
   text-align: center;
-  margin-bottom: 100px;
   position: relative;
 
 }
+
+.md-menu .md-title {
+  font-size: rem(97);
+}
+
+$menu-contain-height: rem(137);
 .md-menu-item__container {
   width: 60%;
   left: 10%;
-  padding-top: 35%;
-  background-color: white;
+  background-color: #f2f2f2;
+  height: $menu-contain-height;
+  margin-bottom: rem(50);
+
+  position: relative;
+
   border-radius: 10px;
   display: inline-block;
   text-align: center;
@@ -21,13 +31,14 @@
 .md-menu-item__label {
   position: absolute;
   left: 50%;
+  width: 100%;
   top: 50%;
-  font-size: 60px;
+  font-size: rem(49);
   transform: translate(-50%, -50%);
 
   &.is-open-false {
     font-size: 0;
-    background: url('./lock.jpg') center;
+    background: url('./lock.png') center;
     width: 20%;
     padding-top: 20%;
     background-size: cover;
